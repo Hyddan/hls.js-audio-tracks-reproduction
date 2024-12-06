@@ -2,10 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Hls.Js Duplicate Cues Reproduction</title>
+    <title>Hls.Js Audio Tracks Reproduction</title>
 <!--    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.0-beta.1.0.canary.10803"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.0-beta.1.0.canary.10804"></script>
+<!--    <script src="https://bugfix-track-and-level-gette.hls-js-4zn.pages.dev/dist/hls.js"></script>-->
   </head>
   <body>
     <video id="video" width="640" height="360" autoplay controls muted></video>
@@ -13,9 +14,9 @@
       const mediaElement = document.querySelector('#video');
       const url = 'https://storage.googleapis.com/shaka-demo-assets/angel-one-hls/hls.m3u8';
 
-      const hls = new Hls({ debug: true });
+      const hls = new Hls({ debug: false });
       hls.once(Hls.Events.MANIFEST_LOADED, (e, data) => {
-        console.log(`Hls.version: ${Hls.version}, Event: MANIFEST_LOADED, audioTracks.length: ${hls.audioTracks.length}`);
+        console.log(`Hls.version: ${Hls.version}, Event: MANIFEST_LOADED, audioTracks.length: ${hls.audioTracks.length}, allAudioTracks.length: ${hls.allAudioTracks.length}`);
       });
       hls.attachMedia(mediaElement);
       hls.loadSource(url);
